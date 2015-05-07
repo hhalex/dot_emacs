@@ -6,11 +6,17 @@
 (delete-selection-mode t)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
+(menu-bar-mode -1)
 (blink-cursor-mode t)
 (show-paren-mode t)
 (column-number-mode t)
 (set-fringe-style -1)
 (tooltip-mode -1)
+
+;;font
+(set-default-font "Inconsolata 13")
+
+;;indentation size
 
 ;;
 ;; <Tramp mode> : édition des fichiers en ligne
@@ -36,8 +42,10 @@
 ;;
 
 ;; Autosave 
-(setq backup-directory-alist `((".*" . , "~/.emacs-backup-files")))
-(setq auto-save-file-name-transforms `((".*" ,"~/.emacs-backup-files" t)))
+(setq backup-directory-alist
+      `((".*" . "~/.emacs.d/backups/")))
+(setq auto-save-file-name-transforms
+      `((".*" "~/.emacs.d/backups/" t)))
 
 
 ;; Package sources

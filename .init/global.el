@@ -1,4 +1,4 @@
-;; Charge tous les packages utiles quelquesoit le fichier édité
+;; Charge tous les packages utiles quelque soit le fichier édité
 
 ;; Common lisp
 (require 'cl)
@@ -10,33 +10,17 @@
 ;; la différenciation de deux fichiers avec diff
 (setq-default ediff-ignore-similar-regions t)
 
-;; Highlight indentation
-(require 'highlight-indentation)
-
 ;; Navigateur textuel
 (require 'w3m)
 
-;; Permet de garder le fil quand on scrolle
-(require 'on-screen)
-(on-screen-global-mode +1)
-
-;; Powerline
-
-;;(require 'powerline)
-;;(powerline-default-theme)
-;;(set-face-attribute 'mode-line nil :height 105)
-
 (use-package smartparens
+  :ensure t
   :diminish smartparens-mode
-  :init (smartparens-global-mode)
-  :config 
+  :config
   (progn
+    (require 'smartparens-config)
+    (smartparens-global-mode 1)
     (show-smartparens-global-mode t)
-    (sp-with-modes '(rhtml-mode)
-      (sp-local-pair "<" ">")
-      (sp-local-pair "<%" "%>"))
-    (sp-with-modes '(php-mode)
-      (sp-local-pair "<?php" "?>"))
     )
   )
 
@@ -59,6 +43,33 @@
   )
 
 (use-package yasnippet
-  :diminish yas-global-mode
-  :init (yas-global-mode 1)
+  :ensure t
+  :diminish yas-minor-mode
+  :mode ("/\\.emacs\\.d/snippets/" . snippet-mode)
+  :init
+  (progn
+    (setq yas-verbosity 3)
+    (yas-global-mode 1)))
+
+(use-package projectile
+  :init (progn
+          (projectile-global-mode 1)
+          (add-hook 'projectile-mode-hook 'projectile-rails-on)
+          )
+  )
+
+(use-package company
+  :diminish company-mode
+  :init (global-company-mode 1)
+  :config (progn
+            (require 'color)
+            
+            (let ((bg (face-attribute 'default :background)))
+              (custom-set-faces
+               `(company-tooltip ((t (:inherit font-lock-comment-face :background ,(color-lighten-name bg 4)))))
+               `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 2)))))
+               `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 8)))))
+               `(company-tooltip-selection ((t (:inherit font-lock-keyword-face :background ,(color-lighten-name bg 6)))))
+               `(company-tooltip-common ((t (:inherit font-lock-string-face :background ,(color-lighten-name bg 6)))))))
+            )
   )

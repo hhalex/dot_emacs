@@ -1,21 +1,20 @@
-
 (use-package enh-ruby-mode
   :ensure enh-ruby-mode
   :mode "\\.rb\\'"
-  :interpreter "ruby"
   :config 
   (progn
-    (use-package inf-ruby
-      :ensure inf-ruby
-      :demand t
-      :init (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
-      :bind ("C-c C-s" . inf-ruby-console-auto)
+     ;;    (use-package inf-ruby
+    ;;      :ensure inf-ruby
+    ;;      :demand t
+    ;;      :init (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
+    ;;      :bind ("C-c C-s" . inf-ruby-console-auto)
+    ;;      )
+    ;;
+    (use-package highlight-indentation
+      :init (add-hook 'enh-ruby-mode-hook
+                      (lambda () (highlight-indentation-current-column-mode)))
       )
-    (use-package company
-      :diminish company-mode
-      :init (add-hook 'enh-ruby-mode-hook 'company-mode)
-      )
-
+    
     (use-package robe
       :diminish robe-mode
       :init (add-hook 'enh-ruby-mode-hook 'robe-mode)
@@ -28,7 +27,8 @@
     
     ;; helm-dash seulement avec les docs ruby et ror
     (add-hook 'enh-ruby-mode-hook '(lambda () (setq-local helm-dash-docsets '("Ruby" "Ruby on rails"))))
-
     
     )
   )
+
+
