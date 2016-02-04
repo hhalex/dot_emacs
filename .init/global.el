@@ -25,19 +25,10 @@
   )
 
 (use-package helm-dash
-  :diminish helm-dash
+  :ensure t
   :config (progn
-            (setq helm-dash-docsets-path (format "%s/.emacs.d/docsets" (getenv "HOME")))
+            (setq helm-dash-docsets-path "~/.emacs.d/docsets" )
             (setq browse-url-browser-function 'w3m)
-            ;;setq  helm-dash-common-docsets '("Ruby_2" "Ruby on Rails"
-            ;;                                 "HTML" "CSS" "JavaScript" "CoffeeScript"
-            ;;                                 "Common_Lisp" "Clojure"
-            ;;                                 "C" "Go"
-            ;;                                 "SQLite" "MySQL" "Redis" "MongoDB"
-            ;;                                 "Qt"
-            ;;                                 "Vagrant" "Nginx"
-            ;;                                 )
-            ;;      )
             )
   :bind ("\C-cd" . helm-dash-at-point)
   )
@@ -72,4 +63,11 @@
                `(company-tooltip-selection ((t (:inherit font-lock-keyword-face :background ,(color-lighten-name bg 6)))))
                `(company-tooltip-common ((t (:inherit font-lock-string-face :background ,(color-lighten-name bg 6)))))))
             )
+  )
+
+(use-package flycheck
+  :init (progn
+          (global-flycheck-mode 1)
+          )
+  ;;:config (setq-default flycheck-disabled-checkers '(c/c++-clang))
   )

@@ -47,9 +47,7 @@
 (setq auto-save-file-name-transforms
       `((".*" "~/.emacs.d/backups/" t)))
 
-
 ;; Package sources
-
 (when (>= emacs-major-version 24)
   (require 'package)
   (package-initialize)
