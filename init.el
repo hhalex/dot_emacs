@@ -25,7 +25,7 @@
   (load "~/.emacs.d/.init/python.el")
 ;;  (load "~/.emacs.d/.init/c++.el")
   (load "~/.emacs.d/.init/ruby.el")
-  ;;(load "~/.emacs.d/.init/web.el")
+  (load "~/.emacs.d/.init/web.el")
   (load "~/.emacs.d/.init/org.el")
   (load "~/.emacs.d/.init/latex.el")
 ;;  (load "~/.emacs.d/.init/csharp.el")
